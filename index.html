@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biofood King - Fresh & Delicious Veggie Cuisine</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2E8B57;
+            background-color: #E0EEE0;
+            margin: 0;
+            padding: 0;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        header {
+            background-color: #3CB371;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            border-radius: 0 0 15px 15px;
+            animation: slideDown 1s ease-out;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        header h1 {
+            font-family: 'Times New Roman', Times, serif;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #2E8B57;
+            border-radius: 0 0 15px 15px;
+        }
+        nav a {
+            color: white;
+            padding: 1rem;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #228B22;
+        }
+        section {
+            padding: 2rem;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .menu-item {
+            margin: 1rem 0;
+            background-color: white;
+            padding: 1rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .menu-item:hover {
+            transform: scale(1.05);
+        }
+        footer {
+            background-color: #3CB371;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            position: relative;
+            width: 100%;
+            bottom: 0;
+            border-radius: 15px 15px 0 0;
+            animation: slideUp 1s ease-out;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Biofood King</h1>
+        <p>Delicious Veggie & Vegetarian Cuisine</p>
+    </header>
+
+    <nav>
+        <a href="#about">About Us</a>
+        <a href="#menu">Menu</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Welcome to Biofood King, your go-to food truck for delightful veggie and vegetarian meals. We're dedicated to serving fresh, healthy, and tasty food across the United States.</p>
+    </section>
+
+    <section id="menu">
+        <h2>Our Menu</h2>
+        <div class="menu-item">
+            <h3>Veggie Burger</h3>
+            <p>A classic veggie burger with a twist, served with homemade fries.</p>
+        </div>
+        <div class="menu-item">
+            <h3>Quinoa Salad</h3>
+            <p>A refreshing quinoa salad with mixed greens and a tangy dressing.</p>
+        </div>
+        <div class="menu-item">
+            <h3>Vegan Wrap</h3>
+            <p>A delicious wrap filled with fresh vegetables and a creamy hummus spread.</p>
+        </div>
+        <div class="menu-item">
+            <h3>Veggie Taco</h3>
+            <p>Crispy taco shells filled with a medley of vegetables and topped with avocado cream.</p>
+        </div>
+        <div class="menu-item">
+            <h3>Stuffed Bell Peppers</h3>
+            <p>Bell peppers stuffed with a mix of quinoa, black beans, and corn.</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: contact@biofoodking.com</p>
+        <p>Phone: (123) 456-7890</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Biofood King. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
