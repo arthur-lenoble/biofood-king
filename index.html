@@ -12,6 +12,7 @@
             margin: 0;
             padding: 0;
             animation: fadeIn 1.5s ease-in-out;
+            overflow-x: hidden;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -24,6 +25,7 @@
             text-align: center;
             border-radius: 0 0 15px 15px;
             animation: slideDown 1s ease-out;
+            position: relative;
         }
         @keyframes slideDown {
             from { transform: translateY(-100%); }
@@ -31,12 +33,26 @@
         }
         header h1 {
             font-family: 'Times New Roman', Times, serif;
+            color: #2E8B57;
+            display: inline-block;
+        }
+        header svg {
+            width: 30px;
+            height: 30px;
+            fill: #2E8B57;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
         }
         nav {
             display: flex;
             justify-content: center;
             background-color: #2E8B57;
             border-radius: 0 0 15px 15px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
         nav a {
             color: white;
@@ -51,10 +67,36 @@
             padding: 2rem;
             text-align: center;
             animation: fadeInUp 1s ease-out;
+            position: relative;
+            z-index: 1;
         }
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        .parallax {
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        .parallax.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .parallax-1 {
+            background-image: url('https://example.com/image1.jpg');
+        }
+        .parallax-2 {
+            background-image: url('https://example.com/image2.jpg');
         }
         .menu-item {
             margin: 1rem 0;
@@ -63,9 +105,68 @@
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
+            cursor: pointer;
         }
         .menu-item:hover {
             transform: scale(1.05);
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            text-align: left;
+        }
+        .popup h3 {
+            margin-top: 0;
+        }
+        .popup .close {
+            cursor: pointer;
+            color: #2E8B57;
+            display: block;
+            text-align: right;
+            margin-top: 1rem;
+        }
+        .popup .buy-button {
+            background-color: #2E8B57;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .popup .buy-button:hover {
+            background-color: #228B22;
+        }
+        .popup .buy-button .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 2s linear infinite;
+            display: none;
+        }
+        .popup .buy-button.loading .loader {
+            display: inline-block;
+        }
+        .popup .buy-button.loading span {
+            display: none;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         footer {
             background-color: #3CB371;
@@ -87,6 +188,9 @@
 <body>
 
     <header>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2L4 8V20H20V8L12 2ZM6 10V18H4V10H6ZM18 10H20V18H18V10ZM14 18V14H10V18H14ZM14 12V10H10V12H14Z"/>
+        </svg>
         <h1>Biofood King</h1>
         <p>Delicious Veggie & Vegetarian Cuisine</p>
     </header>
@@ -97,36 +201,91 @@
         <a href="#contact">Contact</a>
     </nav>
 
-    <section id="about">
+    <section class="parallax parallax-1" id="about">
         <h2>About Us</h2>
         <p>Welcome to Biofood King, your go-to food truck for delightful veggie and vegetarian meals. We're dedicated to serving fresh, healthy, and tasty food across the United States.</p>
     </section>
 
     <section id="menu">
         <h2>Our Menu</h2>
-        <div class="menu-item">
+        <div class="menu-item" onclick="openPopup('veggieBurger')">
             <h3>Veggie Burger</h3>
             <p>A classic veggie burger with a twist, served with homemade fries.</p>
         </div>
-        <div class="menu-item">
+        <div class="menu-item" onclick="openPopup('quinoaSalad')">
             <h3>Quinoa Salad</h3>
             <p>A refreshing quinoa salad with mixed greens and a tangy dressing.</p>
         </div>
-        <div class="menu-item">
+        <div class="menu-item" onclick="openPopup('veganWrap')">
             <h3>Vegan Wrap</h3>
             <p>A delicious wrap filled with fresh vegetables and a creamy hummus spread.</p>
         </div>
-        <div class="menu-item">
+        <div class="menu-item" onclick="openPopup('veggieTaco')">
             <h3>Veggie Taco</h3>
             <p>Crispy taco shells filled with a medley of vegetables and topped with avocado cream.</p>
         </div>
-        <div class="menu-item">
+        <div class="menu-item" onclick="openPopup('stuffedBellPeppers')">
             <h3>Stuffed Bell Peppers</h3>
             <p>Bell peppers stuffed with a mix of quinoa, black beans, and corn.</p>
         </div>
     </section>
 
-    <section id="contact">
+    <div class="popup" id="veggieBurgerPopup">
+        <h3>Veggie Burger</h3>
+        <p><strong>Ingredients:</strong> Veggie patty, lettuce, tomato, onion, pickles, special sauce, bun.</p>
+        <p><strong>Price:</strong> $10.99</p>
+        <button class="buy-button" onclick="orderItem('Veggie Burger', this)">
+            <span>Order Now</span>
+            <div class="loader"></div>
+        </button>
+        <span class="close" onclick="closePopup('veggieBurger')">Close</span>
+    </div>
+
+    <div class="popup" id="quinoaSaladPopup">
+        <h3>Quinoa Salad</h3>
+        <p><strong>Ingredients:</strong> Quinoa, mixed greens, cherry tomatoes, cucumber, feta, tangy dressing.</p>
+        <p><strong>Price:</strong> $8.99</p>
+        <button class="buy-button" onclick="orderItem('Quinoa Salad', this)">
+            <span>Order Now</span>
+            <div class="loader"></div>
+        </button>
+        <span class="close" onclick="closePopup('quinoaSalad')">Close</span>
+    </div>
+
+    <div class="popup" id="veganWrapPopup">
+        <h3>Vegan Wrap</h3>
+        <p><strong>Ingredients:</strong> Tortilla wrap, mixed vegetables, hummus, avocado, lettuce.</p>
+        <p><strong>Price:</strong> $9.99</p>
+        <button class="buy-button" onclick="orderItem('Vegan Wrap', this)">
+            <span>Order Now</span>
+            <div class="loader"></div>
+        </button>
+        <span class="close" onclick="closePopup('veganWrap')">Close</span>
+    </div>
+
+    <div class="popup" id="veggieTacoPopup">
+        <h3>Veggie Taco</h3>
+        <p><strong>Ingredients:</strong> Taco shells, mixed vegetables, avocado cream, salsa, lettuce.</p>
+        <p><strong>Price:</strong> $7.99</p>
+        <button class="buy-button" onclick="orderItem('Veggie Taco', this)">
+            <span>Order Now</span>
+            <div class="loader"></div>
+        </button>
+        <span class="close" onclick="closePopup('veggieTaco')">Close</span>
+    </div>
+
+    <div class="popup" id="stuffedBellPeppersPopup">
+        <h3>Stuffed Bell Peppers</h3>
+        <p><strong>Ingredients:</strong> Bell peppers, quinoa, black beans, corn, cheese, spices.</p>
+        <p><strong>Price:</strong> $11.99</p>
+        <button class="buy-button" onclick="orderItem('Stuffed Bell Peppers', this)">
+            <span>Order Now</span>
+            <div class="loader"></div>
+        </button>
+        <span class="close" onclick="closePopup('stuffedBellPeppers')">Close</span>
+    </div>
+
+    <section class="parallax parallax-2" id="contact">
         <h2>Contact Us</h2>
         <p>Email: contact@biofoodking.com</p>
         <p>Phone: (123) 456-7890</p>
@@ -135,6 +294,34 @@
     <footer>
         <p>&copy; 2025 Biofood King. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.parallax');
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                    section.classList.add('visible');
+                }
+            });
+        });
+
+        function openPopup(menuItem) {
+            document.getElementById(menuItem + 'Popup').style.display = 'block';
+        }
+
+        function closePopup(menuItem) {
+            document.getElementById(menuItem + 'Popup').style.display = 'none';
+        }
+
+        function orderItem(itemName, button) {
+            button.classList.add('loading');
+            setTimeout(() => {
+                button.classList.remove('loading');
+                alert(`Dish ordered: ${itemName}\nThank you for your order. Your dish is being prepared and will be ready soon.`);
+            }, 2000);
+        }
+    </script>
 
 </body>
 </html>
