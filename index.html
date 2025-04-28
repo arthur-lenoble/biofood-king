@@ -209,7 +209,7 @@
         <h2>Our Menu</h2>
         <div class="menu-item" onclick="openPopup('veggieBurger')">
             <h3>Veggie Burger</h3>
-            <p>A classic veggie burger with a twist, served with homemade fries.</p>
+            <p>A classic veggie burger, served with homemade fries.</p>
         </div>
         <div class="menu-item" onclick="openPopup('quinoaSalad')">
             <h3>Quinoa Salad</h3>
@@ -265,7 +265,7 @@
     <div class="popup" id="veggieTacoPopup">
         <h3>Veggie Taco</h3>
         <p><strong>Ingredients:</strong> Taco shells, mixed vegetables, avocado cream, salsa, lettuce.</p>
-        <p><strong>Price:</strong> $18</p>
+        <p><strong>Price:</strong> $8.99</p>
         <button class="buy-button" onclick="orderItem('Veggie Taco', this)">
             <span>Order Now</span>
             <div class="loader"></div>
@@ -276,7 +276,7 @@
     <div class="popup" id="stuffedBellPeppersPopup">
         <h3>Stuffed Bell Peppers</h3>
         <p><strong>Ingredients:</strong> Bell peppers, quinoa, black beans, corn, cheese, spices.</p>
-        <p><strong>Price:</strong> $11.99</p>
+        <p><strong>Price:</strong> $8.99</p>
         <button class="buy-button" onclick="orderItem('Stuffed Bell Peppers', this)">
             <span>Order Now</span>
             <div class="loader"></div>
@@ -286,8 +286,8 @@
 
     <section class="parallax parallax-2" id="contact">
         <h2>Contact Us</h2>
-        <p>Email: contact@biofoodking.com</p>
-        <p>Phone: (123) 456-7890</p>
+        <p>Email: contact@biofoodking.com (not a real contact)</p>
+        <p>Phone: (123) 456-7890 (not a real contact)</p>
     </section>
 
     <footer>
@@ -317,7 +317,7 @@
             button.classList.add('loading');
             setTimeout(() => {
                 button.classList.remove('loading');
-                alert(`Dish ordered: ${itemName}\nThank you for your order. Your dish is being prepared and will be ready soon.`);
+                alert(`Dish ordered: ${itemName}\nThank you for your order. Your dish is being prepared and will be ready soon. We hope you'll like eating with biofood king. Don't forget to rate us !`);
             }, 2000);
         }
     </script>
